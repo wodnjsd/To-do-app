@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { TaskType } from './types/tasks'
+import { useLocalStorage } from './hooks/useLocalStorgae'
 import Home from './components/Home'
 import Footer from './components/Footer'
 import Action from './components/popups/Action'
 
 function App() {
-  const [tasks, setTasks] = useState<TaskType[]>([])
+  const [tasks, setTasks] = useLocalStorage<TaskType[]>("saved", [])
   const [action, setAction] = useState('')
 
   const addTask = (id: string, name: string, date: string) => {

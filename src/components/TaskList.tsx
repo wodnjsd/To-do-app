@@ -11,16 +11,23 @@ type Props = {
   editTask(id: string, name: string, date: string): void;
   deleteTask(id: string): void;
   completeTask(id: string): void;
+  getTodayString(): string;
 
 }
 
-const BookmarksList = ({ tasks, editTask, deleteTask, completeTask }: Props) => {
+const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayString }: Props) => {
   const [editName, setEditName] = useState('')
   const [editDate, setEditDate] = useState('')
   const [id, setId] = useState('')
   const [nameDuplicate, setNameDuplicate] = useState(false)
   const [editId, setEditId] = useState('')
   const [deleteId, setDeleteId] = useState('')
+
+  //create shallow copy and sort by date
+
+  const sorted = tasks.slice().sort((task1, task2) => {
+    return task1.date.localeCompare(task2.date)
+  })
 
   const handleEditSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -48,16 +55,16 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask }: Props) => 
 
   return ( 
     <>
-      <h1 className="py-5">My Task List</h1>
-      {tasks.map((task, index) => {
+      <h1 className="py-5">My Tasks</h1>
+      {sorted.map((task, index) => {
         const { id, name, date } = task
         return (
-          <div className=" flex gap-10 border px-10 py-5 items-center">
+          <div key={id} className=" flex gap-10 border px-10 py-5 items-center">
             <input type="checkbox"  onClick={() => { handleComplete(id)}}/>
             <Task key={index} id={id} name={name} date={date} />
             <div>
               <button onClick={() => { setEditId(id), setId(id), setEditName(name), setEditDate(date) }}><SlPencil /></button>
-              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} />}
+              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} getTodayString={getTodayString}/>}
               <button onClick={() => { setId(id), setDeleteId(id) }}><HiOutlineTrash /></button>
               {id === deleteId && <DeleteConfirm handleDelete={handleDelete} setDeleteId={setDeleteId} />}
             </div>

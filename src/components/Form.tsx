@@ -5,18 +5,10 @@ type Props = {
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit(event: React.FormEvent): void;
+  getTodayString(): string;
 
 }
 
-const getTodayString = () => {
-  //get today's date for minimum value of date input
-  const today = new Date()
-  const year = today.getFullYear()
-  //months are zero-based (0 = January)
-  const month = String(today.getMonth()+1).padStart(2, "0")
-  const day = String(today.getDate()).padStart(2, "0")
-  return `${year}-${month}-${day}`
-  };
 
 
 const Form = (props: Props) => {
@@ -32,7 +24,7 @@ const Form = (props: Props) => {
       </section>
       <section>
         <label>Due Date:</label>
-        <input type="date" name="date" min={getTodayString()} value={props.date} onChange={(e) => props.setDate(e.target.value)} />
+        <input type="date" name="date" min={props.getTodayString()} value={props.date} onChange={(e) => props.setDate(e.target.value)} />
       </section>
       </div>
       <button type="submit" className="my-12">Add</button>
