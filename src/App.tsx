@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { TaskType } from './types/tasks'
 import Home from './components/Home'
 import Footer from './components/Footer'
+import Action from './components/popups/Action'
 
 function App() {
   const [tasks, setTasks] = useState<TaskType[]>([])
+  const [action, setAction] = useState('')
 
   const addTask = (id: string, name: string, date: string) => {
     setTasks([
@@ -15,6 +17,10 @@ function App() {
         date: date
       },
     ])
+    setAction('Added')
+    setTimeout(() => {
+      setAction('')
+    }, 1000)
   }
 
   const editTask = (id: string, name: string, date: string) => {
@@ -32,6 +38,10 @@ function App() {
       }
     })
     setTasks(newList)
+    setAction('Saved')
+    setTimeout(() => {
+      setAction('')
+    }, 1000)
     console.log(tasks)
   }
 
@@ -39,13 +49,28 @@ function App() {
     setTasks(tasks.filter((task) => {
       return task.id !== id
     }))
+    setAction('Deleted')
+    setTimeout(() => {
+      setAction('')
+    }, 1000)
+  }
+
+  const completeTask = (id:string) => {
+    setTasks(tasks.filter((task) => {
+      return task.id !== id
+    }))
+    setAction('Wohoo!')
+    setTimeout(() => {
+      setAction('')
+    }, 1000)
   }
 
   return (
     <>
       <h1 className='py-10 font-bungee text-3xl'>My Todo List</h1>
-      <Home tasks={tasks} addTask={addTask} editTask={editTask} deleteTask={deleteTask}
+      <Home tasks={tasks} addTask={addTask} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask}
       />
+      {action !== '' && <Action action={action}/> }
       <Footer />
     </>
   )

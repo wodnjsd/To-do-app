@@ -9,10 +9,11 @@ type Props = {
   tasks: TaskType[];
   addTask(id:string, name: string, date: string): void;
   editTask(id:string, name: string, date: string): void;
-  deleteTask(id:string): void
+  deleteTask(id:string): void;
+  completeTask(id:string): void
 }
 
-const Home = ({tasks, addTask, editTask, deleteTask}: Props) => {
+const Home = ({tasks, addTask, editTask, deleteTask, completeTask}: Props) => {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [nameDuplicate, setNameDuplicate] = useState(false)
@@ -34,7 +35,7 @@ const Home = ({tasks, addTask, editTask, deleteTask}: Props) => {
   return (
     <>
       <Form name={name} setName={setName} date={date} setDate={setDate} handleSubmit={handleSubmit} />
-      <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask}/>
+      <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask} />
 
     </>
   )

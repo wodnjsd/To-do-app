@@ -3,7 +3,7 @@
 @layer base {
 
   body {
-    @apply h-screen flex flex-col justify-between items-center bg-background font-hepta
+    @apply flex flex-col items-center bg-background font-hepta
   }
   button {
     @apply  rounded-sm py-1 px-4 border hover:shadow-xl font-hepta
