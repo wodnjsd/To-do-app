@@ -18,6 +18,9 @@ export default {
       colors: {
         background: '#F3EBE2',
       },
+      borderWidth: {
+        '20': '26px'
+      }
     },
   },
   plugins: [],

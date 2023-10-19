@@ -21,7 +21,7 @@ function App() {
     setAction('Added')
     setTimeout(() => {
       setAction('')
-    }, 1000)
+    }, 800)
   }
 
   const editTask = (id: string, name: string, date: string) => {
@@ -42,7 +42,7 @@ function App() {
     setAction('Saved')
     setTimeout(() => {
       setAction('')
-    }, 1000)
+    }, 800)
     console.log(tasks)
   }
 
@@ -53,7 +53,7 @@ function App() {
     setAction('Deleted')
     setTimeout(() => {
       setAction('')
-    }, 1000)
+    }, 800)
   }
 
   const completeTask = (id:string) => {
@@ -63,12 +63,12 @@ function App() {
     setAction('Wohoo!')
     setTimeout(() => {
       setAction('')
-    }, 1000)
+    }, 800)
   }
 
   return (
     <>
-      <h1 className='py-10 font-bungee text-3xl'>My Todo List</h1>
+      <h1 className='py-16 font-bungee text-4xl'>My Todo List</h1>
       <Home tasks={tasks} addTask={addTask} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask}
       />
       {action !== '' && <Action action={action}/> }

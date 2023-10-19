@@ -17,7 +17,7 @@ const Home = ({tasks, addTask, editTask, deleteTask, completeTask}: Props) => {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [nameDuplicate, setNameDuplicate] = useState(false)
-  
+
   const getTodayString = () => {
     //get today's date for minimum value of date input
     const today = new Date()
@@ -45,9 +45,8 @@ const Home = ({tasks, addTask, editTask, deleteTask, completeTask}: Props) => {
 
   return (
     <>
-      <Form name={name} setName={setName} date={date} setDate={setDate} handleSubmit={handleSubmit} getTodayString={getTodayString}/>
-      <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask} getTodayString={getTodayString}/>
-
+      <Form name={name} setName={setName} date={date} setDate={setDate} handleSubmit={handleSubmit} getTodayString={getTodayString} nameDuplicate={nameDuplicate} setNameDuplicate={setNameDuplicate}/>
+      <TaskList tasks={tasks} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask} getTodayString={getTodayString} />
     </>
   )
 }

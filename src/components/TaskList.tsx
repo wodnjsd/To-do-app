@@ -62,27 +62,26 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
   }
 
   return (
-    <>
-      <h1 className="py-5">My Tasks</h1>
+    <div className="py-20">
+      <h1 className="py-6 font-geoFill text-lg">My Tasks</h1>
       {sorted.map((task, index) => {
         const { id, name, date } = task
         return (
-          <div key={id} className={`flex gap-10 justify-between px-10 py-5 items-center border ${findOverdue(date) ? 'border-rose-400' : 'border-black'}`}>
+          <div key={id} className={`my-2 flex gap-10 justify-between px-10 py-5 shadow-md items-center border border-t-8 ${findOverdue(date) ? 'border-rose-400' : 'border-cyan-700'}`}>
             <div className="flex gap-10">
               <input type="checkbox" onClick={() => { handleComplete(id) }} />
               <Task key={index} id={id} name={name} date={date} />
             </div>
             <div>
               <button onClick={() => { setEditId(id), setId(id), setEditName(name), setEditDate(date) }}><SlPencil /></button>
-              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} getTodayString={getTodayString} />}
+              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} getTodayString={getTodayString} nameDuplicate={nameDuplicate}/>}
               <button onClick={() => { setId(id), setDeleteId(id) }}><HiOutlineTrash /></button>
               {id === deleteId && <DeleteConfirm handleDelete={handleDelete} setDeleteId={setDeleteId} />}
             </div>
           </div>
-
         )
       })}
-    </>
+    </div>
   )
 }
 
