@@ -17,6 +17,7 @@ const Home = ({tasks, addTask, editTask, deleteTask, completeTask}: Props) => {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [nameDuplicate, setNameDuplicate] = useState(false)
+  
   const getTodayString = () => {
     //get today's date for minimum value of date input
     const today = new Date()

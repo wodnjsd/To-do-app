@@ -24,10 +24,18 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
   const [deleteId, setDeleteId] = useState('')
 
   //create shallow copy and sort by date
-
   const sorted = tasks.slice().sort((task1, task2) => {
     return task1.date.localeCompare(task2.date)
   })
+
+  //overdue tasks to highligh
+  const findOverdue = (date: string) => {
+    const taskDate = new Date(date)
+    const today = new Date(getTodayString())
+    // console.log(today, date )
+    return taskDate < today
+
+  }
 
   const handleEditSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -47,24 +55,26 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
     setDeleteId('')
   }
 
-  const handleComplete = (id:string) => {
+  const handleComplete = (id: string) => {
     setTimeout(() => {
       completeTask(id)
     }, 1000)
   }
 
-  return ( 
+  return (
     <>
       <h1 className="py-5">My Tasks</h1>
       {sorted.map((task, index) => {
         const { id, name, date } = task
         return (
-          <div key={id} className=" flex gap-10 border px-10 py-5 items-center">
-            <input type="checkbox"  onClick={() => { handleComplete(id)}}/>
-            <Task key={index} id={id} name={name} date={date} />
+          <div key={id} className={`flex gap-10 justify-between px-10 py-5 items-center border ${findOverdue(date) ? 'border-rose-400' : 'border-black'}`}>
+            <div className="flex gap-10">
+              <input type="checkbox" onClick={() => { handleComplete(id) }} />
+              <Task key={index} id={id} name={name} date={date} />
+            </div>
             <div>
               <button onClick={() => { setEditId(id), setId(id), setEditName(name), setEditDate(date) }}><SlPencil /></button>
-              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} getTodayString={getTodayString}/>}
+              {id === editId && <EditForm handleEditSubmit={handleEditSubmit} name={editName} setName={setEditName} date={editDate} setDate={setEditDate} setEditId={setEditId} getTodayString={getTodayString} />}
               <button onClick={() => { setId(id), setDeleteId(id) }}><HiOutlineTrash /></button>
               {id === deleteId && <DeleteConfirm handleDelete={handleDelete} setDeleteId={setDeleteId} />}
             </div>

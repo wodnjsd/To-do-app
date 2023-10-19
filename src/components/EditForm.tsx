@@ -15,7 +15,7 @@ const EditForm = ({ name, date, setName, setDate, setEditId, handleEditSubmit, g
 
   return (
     <form onSubmit={handleEditSubmit} className="fixed h-full w-screen left-0 top-0 flex flex-col justify-center items-center z-20 backdrop-blur backdrop-brightness-50">
-      <div className="w-1/2 flex flex-col justify-between items-center gap-10 rounded-sm bg-background text-sm p-20 ">
+      <div className="flex flex-col justify-between items-center gap-10 rounded-sm bg-background text-sm p-20">
         <h3>Make changes to your task here. Click save when you're done!</h3>
         <div className="flex gap-8">
           <section className="flex flex-col gap-2">

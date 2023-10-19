@@ -10,12 +10,10 @@ type Props = {
 }
 
 
-
 const Form = (props: Props) => {
 
-
   return (
-    <form onSubmit={props.handleSubmit} className='flex flex-col h-full justify-between items-center py-10 border rounded-sm px-20'>
+    <form onSubmit={props.handleSubmit} className='flex flex-col h-full justify-between items-center py-10 border border-black rounded-sm px-20'>
       <h2 className="font-geostar text-xl py-12">Add Your Task</h2>
       <div className="flex flex-col gap-8">
       <section>

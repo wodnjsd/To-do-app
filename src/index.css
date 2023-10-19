@@ -6,10 +6,10 @@
     @apply flex flex-col items-center bg-background font-hepta
   }
   button {
-    @apply  rounded-sm py-1 px-4 border hover:shadow-xl font-hepta
+    @apply  rounded-sm py-1 px-4 border border-black hover:shadow-xl font-hepta
   }
   input {
-    @apply border p-1 rounded-sm focus:outline-none
+    @apply border border-black p-1 rounded-sm focus:outline-none
   }
 }
 
