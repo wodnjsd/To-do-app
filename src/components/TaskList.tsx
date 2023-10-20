@@ -8,14 +8,15 @@ import { HiOutlineTrash } from 'react-icons/hi2'
 
 type Props = {
   tasks: TaskType[];
+  sorted: TaskType[];
+  currentTasks: TaskType[];
   editTask(id: string, name: string, date: string): void;
   deleteTask(id: string): void;
   completeTask(id: string): void;
   getTodayString(): string;
-
 }
 
-const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayString }: Props) => {
+const BookmarksList = ({ tasks, currentTasks, editTask, deleteTask, completeTask, getTodayString }: Props) => {
   const [editName, setEditName] = useState('')
   const [editDate, setEditDate] = useState('')
   const [id, setId] = useState('')
@@ -23,18 +24,12 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
   const [editId, setEditId] = useState('')
   const [deleteId, setDeleteId] = useState('')
 
-  //create shallow copy and sort by date
-  const sorted = tasks.slice().sort((task1, task2) => {
-    return task1.date.localeCompare(task2.date)
-  })
-
-  //overdue tasks to highligh
+  //overdue tasks to highlight
   const findOverdue = (date: string) => {
     const taskDate = new Date(date)
     const today = new Date(getTodayString())
     // console.log(today, date )
     return taskDate < today
-
   }
 
   const handleEditSubmit = (e: FormEvent) => {
@@ -43,7 +38,6 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
     if (toEdit.find(task => task.name === editName)) {
       return setNameDuplicate(true)
     }
-
     if (!nameDuplicate) {
       editTask(id, editName, editDate)
       setEditId('')
@@ -58,13 +52,13 @@ const BookmarksList = ({ tasks, editTask, deleteTask, completeTask, getTodayStri
   const handleComplete = (id: string) => {
     setTimeout(() => {
       completeTask(id)
-    }, 1000)
+    }, 500)
   }
 
   return (
     <div className="py-20">
-      <h1 className="py-6 font-geoFill text-lg">My Tasks</h1>
-      {sorted.map((task, index) => {
+      <h1 className="py-6 font-geoFill text-xl">My Tasks</h1>
+      {currentTasks.map((task, index) => {
         const { id, name, date } = task
         return (
           <div key={id} className={`my-2 flex gap-10 justify-between px-10 py-5 shadow-md items-center border border-t-8 ${findOverdue(date) ? 'border-rose-400' : 'border-cyan-700'}`}>

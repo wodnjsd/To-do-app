@@ -1,10 +1,10 @@
 
 
-// type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
-    <div>Footer</div>
+      <div className="flex justify-center w-full border-t border-gray-400 mt-20 py-14 text-lg">
+        JWH
+      </div>
   )
 }
 
