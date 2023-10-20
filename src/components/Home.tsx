@@ -69,7 +69,9 @@ const Home = ({ tasks, addTask, editTask, deleteTask, completeTask }: Props) => 
   return (
     <>
       <Form name={name} setName={setName} date={date} setDate={setDate} handleSubmit={handleSubmit} getTodayString={getTodayString} nameDuplicate={nameDuplicate} setNameDuplicate={setNameDuplicate} />
-      <TaskList tasks={tasks} currentTasks={currentTasks} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask} getTodayString={getTodayString} sorted={sorted} />
+      {tasks.length>0? <TaskList tasks={tasks} currentTasks={currentTasks} editTask={editTask} deleteTask={deleteTask} completeTask={completeTask} getTodayString={getTodayString} sorted={sorted} /> :
+      <div className='flex flex-col justify-center items-center mt-20'>No tasks yet
+        <p className='text-xs mt-2'>Start adding now!</p></div>}
       <Pagination totalTasks={tasks.length} nPages={nPages} paginate={paginate} next={next} previous={previous} currentPage={currentPage}/>
     </>
   )

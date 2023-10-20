@@ -3,14 +3,15 @@
 ## Overview 
 Todo app to save your tasks on local storage
 
-***The app has been deployed with Netlify and is available [here]()***
+***The app has been deployed with Netlify and is available [here](https://jwtodoapp.netlify.app/)***
 
-## Functionality:
+## Features & Functionality:
+- 10 Tasks displayed per page
+- Tasks are ordered by due date 
+- Overdue tasks will be highlighted 
 Users can:  
 - Add new tasks 
 - Edit and delete tasks in their list
-- Tasks are ordered by due date 
-- Overdue tasks will be highlighted 
 
 ## Technologies used:
 * React
