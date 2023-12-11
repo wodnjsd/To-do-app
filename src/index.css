@@ -12,7 +12,7 @@
     @apply border border-black p-1 rounded-sm focus:outline-none
   }
   #root {
-    @apply w-2/5 min-w-min max-w-lg
+    @apply w-4/5 min-w-min max-w-lg
   }
 }
 
